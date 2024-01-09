@@ -1,0 +1,14 @@
+{% load static %}
+
+
+<div class="row">
+    <div class="col-md-4 pull-left">
+            <a href="{% url 'user_panel_dashboard' %}" class="btn">User Panel</a>
+            <a href="{% url 'create_post' %}" class="btn">Create Post</a>
+            <a href="{% url 'edit_user_info' %}" class="btn">Edit User Info</a>
+            <a href="{% url 'change-password' %}" class="btn">Change Password</a>
+            <a href="{% url 'logout' %}" class="btn">Logout</a>
+    </div>
+</div>
+
+

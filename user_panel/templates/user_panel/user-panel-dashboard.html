@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}User Dashboard{% endblock %}
+{% block header_references %}
+    <link rel="stylesheet" href="{% static 'app.css' %}">
+    <link rel="stylesheet" href="{% static '/static/user/register.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div>
+        {% include 'user_panel/includes/user-panel-map-include.html' %}
+    </div>
+<div class="main">
+    <div class="container">
+        <div class="col-md-8 pull-right" style="border-radius: 20px; padding: 10px 10px 10px 10px;">
+                <img class="profile-picture" src="{{ current_user.profile_picture.url }}" width="200px" height="200px" alt="">
+            <div class="col-md-8" style="padding: 10px 10px 10px 10px">
+                    <p> username : {{ current_user.username }}</p>
+                    <p> about user : {{ current_user.about_user }}</p>
+                </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

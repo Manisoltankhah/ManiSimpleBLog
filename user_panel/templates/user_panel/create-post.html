@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load render_partial %}
+
+{% block title %}Create Post{% endblock %}
+{% block header_references %}
+    <link rel="stylesheet" href="{% static 'app.css' %}">
+    <link rel="stylesheet" href="{% static 'edit-user-info.css' %}">
+    <link rel="stylesheet" href="{% static 'user-panel-map-include-style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div>
+    {% include 'user_panel/includes/user-panel-map-include.html' %}
+</div>
+<div class="main-box">
+    <div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            {% if current_user.avatar %}
+                <a href="">
+                    <img style="margin-bottom: 20px; margin-right: 40px;" src="{{ current_user.profile_picture.url }}" class="profile-image" alt="">
+                </a>
+            {% endif %}
+
+        </div>
+        <div class="col-md-8">
+            <form enctype="multipart/form-data" action="{% url 'create_post' %}" method="post">
+                {% csrf_token %}
+                {{ post_form.image }}
+                {{ post_form.title }}
+                {{ post_form.short_description }}
+                {{ post_form.main_text }}
+                <div class="container-button">
+                    <div class="center-button">
+                        <button type="submit" class="btn btn-success">submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+
+{% endblock %}

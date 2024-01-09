@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Sign up{% endblock %}
+{% block header_references %}
+    <link rel="stylesheet" href="{% static 'app.css' %}">
+    <link rel="stylesheet" href="{% static '/static/user/register.css' %}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+	<div class="main">
+		<input type="checkbox" id="chk" aria-hidden="true">
+
+			<div class="signup">
+				<form method="post" action="{% url 'register_page' %}">
+                    {% csrf_token %}
+                    <label for="chk" aria-hidden="true">Sign up</label>
+					{{ register_form.email }}
+					{{ register_form.username }}
+					{{ register_form.password }}
+					<button>Sign up</button>
+                    <a class="signup-page-login-link" href="{% url 'login-page' %}">already have account?</a>
+				</form>
+			</div>
+	</div>
+{% endblock %}

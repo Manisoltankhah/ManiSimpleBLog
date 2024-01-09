@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Edit Profile{% endblock %}
+{% block header_references %}
+    <link rel="stylesheet" href="{% static 'app.css' %}">
+    <link rel="stylesheet" href="{% static '/user-panel/../../static/edit-user-info.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div>
+    {% include 'user_panel/includes/user-panel-map-include.html' %}
+</div>
+<div class="main-box">
+    <div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            {% if current_user.avatar %}
+                <a href="">
+                    <img style="margin-bottom: 20px; margin-right: 40px;" src="{{ current_user.profile_picture.url }}" class="profile-image" alt="">
+                </a>
+            {% endif %}
+
+        </div>
+        <div class="col-md-8">
+            <form enctype="multipart/form-data" action="{% url 'edit_user_info' %}" method="post">
+                {% csrf_token %}
+                {{ edit_form.profile_picture }}
+                {{ edit_form.first_name }}
+                {{ edit_form.last_name }}
+                {{ edit_form.about_user }}
+                <button type="submit" class="btn btn-success">submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

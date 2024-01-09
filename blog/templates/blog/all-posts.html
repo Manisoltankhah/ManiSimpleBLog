@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    My Blog
+{% endblock %}
+
+{% block header_reference %}
+    <link rel="stylesheet" href="{% static 'blog/index.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/all-posts.css' %}">
+{% endblock %}
+
+{% block content %}
+    <section id="all-posts">
+        <h2>this is all posts</h2>
+
+        <div>
+            <ul>
+                {% for post in all_posts %}
+                    {% include 'blog/includes/post.html' %}
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+    <div>
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li>
+                    <a href="?page={{page_obj.previous_page_number}}">Previous</a>
+                </li>
+            {% endif %}
+
+            {% for pageNumber in paginator.page_range %}
+                <li class="{% if page_obj.number == pageNumber %} active {% endif %}">
+                    <a href="?page={{ pageNumber }}">{{ pageNumber }}</a>
+                </li>
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li>
+                    <a href="?page={{page_obj.next_page_number}}">Next</a>
+                </li>
+            {% endif %}
+            </ul>
+        </div>
+{% endblock %}

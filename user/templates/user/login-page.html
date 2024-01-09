@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Sign up{% endblock %}
+{% block header_references %}
+    <link rel="stylesheet" href="{% static 'app.css' %}">
+    <link rel="stylesheet" href="{% static '/static/user/register.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="main">
+        <div class="login">
+            <form method="post" action="{% url 'login-page' %}">
+                {% csrf_token %}
+                <label for="chk" aria-hidden="true">Login</label>
+                {{ login_form.email }}
+                {{ login_form.password }}
+                <button>Login</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
